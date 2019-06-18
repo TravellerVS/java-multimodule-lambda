@@ -1,6 +1,6 @@
 # multi-lambda-poc
 
-##Commands
+## Commands
 
 <code>
 clean install --projects functions\rest-example --also-make
