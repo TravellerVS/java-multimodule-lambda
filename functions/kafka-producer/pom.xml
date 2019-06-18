@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>functions</artifactId>
+        <groupId>com.simplicity.poc</groupId>
+        <version>DEVELOP-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>kafka-producer</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <spring-integration-kafka.version>3.1.1.RELEASE</spring-integration-kafka.version>
+        <spring-cloud-function-stream.version>1.0.1.RELEASE</spring-cloud-function-stream.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-function-stream</artifactId>
+            <version>${spring-cloud-function-stream.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-kafka</artifactId>
+            <exclusions>
+                <!--
+                    Exclude the embedded Apache Kafka broker. It would be needed in order to execute administrative
+                    tasks such as creating and reconfiguring topics.
+                -->
+                <exclusion>
+                    <groupId>org.apache.kafka</groupId>
+                    <artifactId>kafka_2.11</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-kafka</artifactId>
+            <version>${spring-integration-kafka.version}</version>
+            <exclusions>
+                <!--
+                    Exclude the embedded Apache Kafka broker. It would be needed in order to execute administrative
+                    tasks such as creating and reconfiguring topics.
+                -->
+                <exclusion>
+                    <groupId>org.apache.kafka</groupId>
+                    <artifactId>kafka_2.11</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream-binder-kafka</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.simplicity.poc</groupId>
+            <artifactId>util</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
